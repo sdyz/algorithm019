@@ -1,21 +1,19 @@
-/**
- * @param {string} s
- * @param {number} k
- * @return {string}
- */
-var reverseStr = function(s, k) {
-    if (!s.length) return ''
-
-    const a = s.split('') 
-
-    for (let i = 0, n = a.length; i < n; i += 2 * k) {
-        let l = i, r = Math.min(l + k - 1, n), t 
-        while (l < r) {
-            t = a[l]
-            a[l++] = a[r]
-            a[r--] = t
+var reverseWords = function(s) {
+    const ret = [];
+    const length = s.length;
+    let i = 0;
+    while (i < length) {
+        let start = i;
+        while (i < length && s.charAt(i) != ' ') {
+            i++;
+        }
+        for (let p = start; p < i; p++) {
+            ret.push(s.charAt(start + i - 1 - p));
+        }
+        while (i < length && s.charAt(i) == ' ') {
+            i++;
+            ret.push(' ');
         }
     }
-
-    return a.join('')
+    return ret.join('');
 };
